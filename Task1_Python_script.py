@@ -5,6 +5,8 @@ import os
 import requests
 import re
 # Code here - Import BeautifulSoup library
+from bs4 import BeautifulSoup
+import sys
 
 # Code ends here
 
@@ -13,7 +15,7 @@ def get_page():
 	global url
 	
 	# Code here - Ask the user to input "Enter url of a medium article: " and collect it in url
-	
+	url = input("Enter url: ")
 	# Code ends here
 	
 	# handling possible error
@@ -22,7 +24,7 @@ def get_page():
 		sys.exit(1)
 
 	# Code here - Call get method in requests object, pass url and collect it in res
-	
+	res = requests.get(url)
 	# Code ends here
 
 	res.raise_for_status()
@@ -56,7 +58,8 @@ def save_file(text):
 	fname = f'scraped_articles/{name}.txt'
 	
 	# Code here - write a file using with (2 lines)
-	
+	with open ("scraped_articles/scraped_article.txt", "w") as f:
+            f.writelines(text)
 
 	# Code ends here
 
